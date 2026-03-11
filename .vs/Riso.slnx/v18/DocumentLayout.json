@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Omarsnzz\\Desktop\\Riso\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{83C873C2-0397-4E39-B904-62F73013C9D1}|Riso.csproj|c:\\users\\omarsnzz\\desktop\\riso\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{83C873C2-0397-4E39-B904-62F73013C9D1}|Riso.csproj|solutionrelative:menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83C873C2-0397-4E39-B904-62F73013C9D1}|Riso.csproj|c:\\users\\omarsnzz\\desktop\\riso\\menuprincipal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83C873C2-0397-4E39-B904-62F73013C9D1}|Riso.csproj|solutionrelative:menuprincipal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MenuPrincipal.xaml",
+              "DocumentMoniker": "C:\\Users\\Omarsnzz\\Desktop\\Riso\\MenuPrincipal.xaml",
+              "RelativeDocumentMoniker": "MenuPrincipal.xaml",
+              "ToolTip": "C:\\Users\\Omarsnzz\\Desktop\\Riso\\MenuPrincipal.xaml",
+              "RelativeToolTip": "MenuPrincipal.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-11T00:34:46.905Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MenuPrincipal.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Omarsnzz\\Desktop\\Riso\\MenuPrincipal.xaml.cs",
+              "RelativeDocumentMoniker": "MenuPrincipal.xaml.cs",
+              "ToolTip": "C:\\Users\\Omarsnzz\\Desktop\\Riso\\MenuPrincipal.xaml.cs",
+              "RelativeToolTip": "MenuPrincipal.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-11T00:34:44.635Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
