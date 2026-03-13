@@ -1,0 +1,28 @@
+﻿<Window x:Class="Riso.Bebidas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestión de Bebidas" Height="450" Width="400" 
+        WindowStartupLocation="CenterScreen" Background="#F8F9FA">
+
+    <StackPanel Margin="20" VerticalAlignment="Center">
+        <TextBlock Text="MENÚ DE BEBIDAS" Foreground="#2C3E50" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+        <Button x:Name="btnVerBebidas" Content="Bebidas Existentes" 
+                Height="45" Margin="20,10" Background="#3498DB" 
+                Foreground="White" FontSize="16" FontWeight="Bold"/>
+
+        <Button x:Name="btnAgregarBebida" Content="Agregar Bebida" 
+                Height="45" Margin="20,10" Background="#2ECC71" 
+                Foreground="White" FontSize="16" FontWeight="Bold"/>
+
+        <Button x:Name="btnEliminarBebida" Content="Eliminar Bebida" 
+                Height="45" Margin="20,10" Background="#E74C3C" 
+                Foreground="White" FontSize="16" FontWeight="Bold"/>
+
+        <Button x:Name="btnVolver" Content="Volver al Menú Principal" 
+                Click="btnVolver_Click" Height="40" Margin="20,40,20,0" 
+                Background="#95A5A6" Foreground="White" FontSize="14"/>
+    </StackPanel>
+</Window>

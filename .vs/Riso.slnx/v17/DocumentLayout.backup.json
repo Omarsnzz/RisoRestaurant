@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|c:\\users\\soulpower2.0\\desktop\\risorestaurant\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|solutionrelative:menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|c:\\users\\soulpower2.0\\desktop\\risorestaurant\\menuprincipal.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|solutionrelative:menuprincipal.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|c:\\users\\soulpower2.0\\desktop\\risorestaurant\\bebidas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|solutionrelative:bebidas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|c:\\users\\soulpower2.0\\desktop\\risorestaurant\\bebidas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{71555525-4339-A6E4-CF25-5148B3ADD687}|Riso.csproj|solutionrelative:bebidas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MenuPrincipal.xaml",
+              "DocumentMoniker": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\MenuPrincipal.xaml",
+              "RelativeDocumentMoniker": "MenuPrincipal.xaml",
+              "ToolTip": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\MenuPrincipal.xaml",
+              "RelativeToolTip": "MenuPrincipal.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-12T23:57:20.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MenuPrincipal.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\MenuPrincipal.xaml.cs",
+              "RelativeDocumentMoniker": "MenuPrincipal.xaml.cs",
+              "ToolTip": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\MenuPrincipal.xaml.cs",
+              "RelativeToolTip": "MenuPrincipal.xaml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvyIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T00:01:58.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bebidas.xaml",
+              "DocumentMoniker": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\Bebidas.xaml",
+              "RelativeDocumentMoniker": "Bebidas.xaml",
+              "ToolTip": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\Bebidas.xaml",
+              "RelativeToolTip": "Bebidas.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-12T23:56:02.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bebidas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\Bebidas.xaml.cs",
+              "RelativeDocumentMoniker": "Bebidas.xaml.cs",
+              "ToolTip": "C:\\Users\\SoulPower2.0\\Desktop\\RisoRestaurant\\Bebidas.xaml.cs",
+              "RelativeToolTip": "Bebidas.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T23:48:25.289Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
