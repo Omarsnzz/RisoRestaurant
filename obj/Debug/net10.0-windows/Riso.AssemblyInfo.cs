@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Riso")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93230a817d38e162d9547c554ad9be392e78783e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Riso")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Riso")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,7 +9,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="res\img\Bebidas.png" />
+    <None Remove="res\img\Cuenta.png" />
+    <None Remove="res\img\Domicilios.png" />
+    <None Remove="res\img\Grecas.png" />
+    <None Remove="res\img\InferiorDER.png" />
+    <None Remove="res\img\InferiorIZQ.png" />
+    <None Remove="res\img\Inventario.png" />
+    <None Remove="res\img\LogoALL.png" />
+    <None Remove="res\img\PlatilloDia.png" />
+    <None Remove="res\img\SuperiorDER.png" />
+    <None Remove="res\img\SuperiorIZQ.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="res\img\SuperiorDER.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="res\img\Bebidas.png" />
+    <Resource Include="res\img\Cuenta.png" />
+    <Resource Include="res\img\Domicilios.png" />
+    <Resource Include="res\img\InferiorDER.png" />
+    <Resource Include="res\img\InferiorIZQ.png" />
+    <Resource Include="res\img\Inventario.png" />
+    <Resource Include="res\img\LogoALL.png" />
+    <Resource Include="res\img\PlatilloDia.png" />
+    <Resource Include="res\img\SuperiorIZQ.png" />
   </ItemGroup>
 
 </Project>
