@@ -1,0 +1,66 @@
+﻿<Window x:Class="Riso.Bebidas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Réso - Catálogo de Bebidas" Height="600" Width="900" 
+        WindowStartupLocation="CenterScreen" Background="#FEFDF1">
+    <Window.Resources>
+        <Style x:Key="BotonDoradoElegant" TargetType="Button">
+            <Setter Property="Background" Value="#D1A757"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BotonCafeElegant" TargetType="Button" BasedOn="{StaticResource BotonDoradoElegant}">
+            <Setter Property="Background" Value="#8B6B3F"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,25">
+            <TextBlock Text="RISO" Foreground="#8B6B3F" FontSize="40" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+            <TextBlock Text="CATÁLOGO DE BEBIDAS" Foreground="#D1A757" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,-5,0,0"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgBebidas" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  IsReadOnly="True" Background="White" BorderBrush="#D1A757" FontSize="15" RowHeight="35">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#D1A757"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding idBebidas}" Width="70"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Precio ($)" Binding="{Binding Costo}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <UniformGrid Grid.Row="2" Columns="4" Margin="0,25,0,0" Height="55">
+            <Button x:Name="btnAbrirAgregar" Content="➕ AGREGAR" Style="{StaticResource BotonDoradoElegant}" Margin="5" Click="btnAgregarBebida_Click"/>
+            <Button x:Name="btnAbrirEliminar" Content="🗑️ ELIMINAR" Style="{StaticResource BotonCafeElegant}" Margin="5" Click="btnEliminarBebida_Click"/>
+            <Button x:Name="btnActualizar" Content="🔄 REFRESCAR" Style="{StaticResource BotonCafeElegant}" Margin="5" Click="btnActualizar_Click"/>
+            <Button x:Name="btnVolver" Content="🏠 MENÚ" Style="{StaticResource BotonDoradoElegant}" Margin="5" Click="btnVolver_Click"/>
+        </UniformGrid>
+    </Grid>
+</Window>

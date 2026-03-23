@@ -33,7 +33,9 @@ namespace Riso
                     MessageBox.Show("Módulo: Cuentas");
                     break;
                 case "btnBebidas":
-                    MessageBox.Show("Módulo: Bebidas");
+                    Bebidas ventanaBebidas = new Bebidas();
+                    ventanaBebidas.Show();
+                    this.Close();
                     break;
             }
         }
