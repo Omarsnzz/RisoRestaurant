@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2026 a las 18:18:13
+-- Tiempo de generación: 31-03-2026 a las 21:36:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,6 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `alimentos`
+--
+
+CREATE TABLE `alimentos` (
+  `Nombre` varchar(30) NOT NULL,
+  `Precio` int(11) NOT NULL,
+  `Cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `bebidas`
 --
 
@@ -38,8 +50,7 @@ CREATE TABLE `bebidas` (
 --
 
 INSERT INTO `bebidas` (`idBebidas`, `Nombre`, `Costo`) VALUES
-(3, 'coca-cola', 55),
-(4, 'pepsi', 25);
+(5, 'Coca-Cola', 50);
 
 --
 -- Índices para tablas volcadas
@@ -59,7 +70,7 @@ ALTER TABLE `bebidas`
 -- AUTO_INCREMENT de la tabla `bebidas`
 --
 ALTER TABLE `bebidas`
-  MODIFY `idBebidas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idBebidas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
