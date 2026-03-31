@@ -42,4 +42,10 @@
     <Resource Include="res\img\SuperiorIZQ.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="PlatillosDia.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
