@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2026 a las 21:36:47
+-- Tiempo de generación: 07-04-2026 a las 18:49:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -50,7 +50,19 @@ CREATE TABLE `bebidas` (
 --
 
 INSERT INTO `bebidas` (`idBebidas`, `Nombre`, `Costo`) VALUES
-(5, 'Coca-Cola', 50);
+(5, 'Coca-Cola', 60);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `inventario`
+--
+
+CREATE TABLE `inventario` (
+  `Nombre` varchar(100) NOT NULL,
+  `Cantidad` decimal(10,2) NOT NULL,
+  `UnidadMedida` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -70,7 +82,7 @@ ALTER TABLE `bebidas`
 -- AUTO_INCREMENT de la tabla `bebidas`
 --
 ALTER TABLE `bebidas`
-  MODIFY `idBebidas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idBebidas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

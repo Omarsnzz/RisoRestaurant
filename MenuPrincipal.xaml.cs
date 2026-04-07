@@ -28,7 +28,10 @@ namespace Riso
                     break;
 
                 case "btnInventario":
-                    MessageBox.Show("Módulo: Inventario");
+                    VentanaInventario ventanaInventario = new VentanaInventario();
+                    ventanaInventario.Show();
+                    this.Hide();
+
                     break;
 
                 case "btnPedidos":
@@ -40,15 +43,12 @@ namespace Riso
                     break;
 
                 case "btnBebidas":
-                    // 1. Instanciamos la ventana de Bebidas
-                    Bebidas ventanaBebidas = new Bebidas();
-
-                    // 2. Mostramos la nueva ventana
+                    VentanaBebidas ventanaBebidas = new VentanaBebidas();
                     ventanaBebidas.Show();
-
-                    // 3. Ocultamos el Menú Principal (usar Hide en lugar de Close)
                     this.Hide();
-                    break;
+
+                    break; 
+
             }
         }
     }

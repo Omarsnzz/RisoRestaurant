@@ -2,13 +2,10 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="AgregarBebida.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Bebidas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="EliminarBebida.xaml.cs">
+    <Compile Update="Inventarioxaml.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
