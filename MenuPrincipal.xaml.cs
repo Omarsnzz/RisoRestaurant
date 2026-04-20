@@ -35,7 +35,9 @@ namespace Riso
                     break;
 
                 case "btnPedidos":
-                    MessageBox.Show("Módulo: Pedidos");
+                    Pedidos ventanaPedidos = new Pedidos();
+                    ventanaPedidos.Show();
+                    this.Hide();
                     break;
 
                 case "btnCuenta":
