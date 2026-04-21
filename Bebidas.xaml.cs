@@ -8,13 +8,12 @@ namespace Riso
 {
     public partial class VentanaBebidas : Window
     {
-        // Tu cadena de conexión a la base de datos local
         string cadenaConexion = "server=localhost;port=3306;user=root;password=;database=risorestaurant;";
 
         public VentanaBebidas()
         {
             InitializeComponent();
-            CargarDatos(); // Carga las bebidas en la tabla apenas se abre la ventana
+            CargarDatos();
         }
 
         private void CargarDatos()
@@ -24,7 +23,8 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    string query = "SELECT Nombre, Costo FROM bebidas";
+                    // SE AGREGÓ CANTIDAD AL SELECT
+                    string query = "SELECT Nombre, Costo, Cantidad FROM bebidas";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -41,15 +41,15 @@ namespace Riso
 
         private void btnAgregarBebida_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCosto.Text))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCosto.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text))
             {
-                MessageBox.Show("Por favor, llena todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, llena todos los campos (Nombre, Costo y Cantidad).", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (!int.TryParse(txtCosto.Text, out int costo))
+            if (!int.TryParse(txtCosto.Text, out int costo) || !int.TryParse(txtCantidad.Text, out int cantidad))
             {
-                MessageBox.Show("El costo debe ser un número entero válido.", "Error de Formato", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El costo y la cantidad deben ser números válidos.", "Error de Formato", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -58,10 +58,12 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    string query = "INSERT INTO bebidas (Nombre, Costo) VALUES (@nombre, @costo)";
+                    // SE AGREGÓ CANTIDAD AL INSERT
+                    string query = "INSERT INTO bebidas (Nombre, Costo, Cantidad) VALUES (@nombre, @costo, @cantidad)";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@costo", costo);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Bebida agregada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -84,9 +86,9 @@ namespace Riso
                 return;
             }
 
-            if (!int.TryParse(txtCosto.Text, out int costo))
+            if (!int.TryParse(txtCosto.Text, out int costo) || !int.TryParse(txtCantidad.Text, out int cantidad))
             {
-                MessageBox.Show("El costo debe ser un número entero válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El costo y la cantidad deben ser números válidos.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -95,11 +97,12 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    // Actualizamos el costo basándonos en el nombre de la bebida
-                    string query = "UPDATE bebidas SET Costo = @costo WHERE Nombre = @nombre";
+                    // SE AGREGÓ CANTIDAD AL UPDATE
+                    string query = "UPDATE bebidas SET Costo = @costo, Cantidad = @cantidad WHERE Nombre = @nombre";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@costo", costo);
+                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -191,12 +194,14 @@ namespace Riso
 
         private void dgBebidas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Al hacer clic en la tabla, pasamos los datos a los TextBox
             if (dgBebidas.SelectedItem != null)
             {
                 DataRowView row = (DataRowView)dgBebidas.SelectedItem;
                 txtNombre.Text = row["Nombre"].ToString();
                 txtCosto.Text = row["Costo"].ToString();
+
+                // SE LEE LA CANTIDAD AL HACER CLIC EN LA TABLA
+                txtCantidad.Text = row["Cantidad"].ToString();
             }
         }
 
@@ -204,12 +209,12 @@ namespace Riso
         {
             txtNombre.Clear();
             txtCosto.Clear();
+            txtCantidad.Clear(); // SE LIMPIA EL CAMPO CANTIDAD
             dgBebidas.SelectedItem = null;
         }
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            // Busca la ventana principal para mostrarla de nuevo
             foreach (Window window in Application.Current.Windows)
             {
                 if (window.GetType() == typeof(MainWindow))
@@ -217,7 +222,7 @@ namespace Riso
                     window.Show();
                 }
             }
-            this.Close(); // Cierra la ventana actual de Bebidas
+            this.Close();
         }
     }
 }
