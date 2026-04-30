@@ -64,69 +64,91 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                 <TextBlock Text="Platillo:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
-                <ComboBox x:Name="cmbPlatillos" Width="140" DisplayMemberPath="Nombre"/>
+                <ComboBox x:Name="cmbPlatillos" Width="120" DisplayMemberPath="Nombre" SelectionChanged="cmbPlatillos_SelectionChanged"/>
+
+                <TextBlock Text="Disp:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0" Foreground="#555"/>
+                <TextBlock x:Name="lblDisponiblePlatillo" Text="-" VerticalAlignment="Center" Width="25" Foreground="DarkRed" FontWeight="Bold"/>
+
                 <TextBlock Text="Cant:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0"/>
-                <TextBox x:Name="txtCantPlatillo" Width="30" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="txtCantPlatillo" Width="25" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
                 <Button Content="+" Width="30" Margin="5,0,15,0" Click="btnAgregarPlatillo_Click" Style="{StaticResource BotonDoradoElegant}"/>
 
                 <TextBlock Text="Bebida:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
-                <ComboBox x:Name="cmbBebidas" Width="140" DisplayMemberPath="Nombre"/>
+                <ComboBox x:Name="cmbBebidas" Width="120" DisplayMemberPath="Nombre" SelectionChanged="cmbBebidas_SelectionChanged"/>
+
+                <TextBlock Text="Disp:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0" Foreground="#555"/>
+                <TextBlock x:Name="lblDisponibleBebida" Text="-" VerticalAlignment="Center" Width="25" Foreground="DarkRed" FontWeight="Bold"/>
+
                 <TextBlock Text="Cant:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0"/>
-                <TextBox x:Name="txtCantBebida" Width="30" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="txtCantBebida" Width="25" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
                 <Button Content="+" Width="30" Margin="5,0,15,0" Click="btnAgregarBebida_Click" Style="{StaticResource BotonDoradoElegant}"/>
 
                 <TextBlock Text="Estado:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
-                <ComboBox x:Name="cmbEstado" Width="100">
+                <ComboBox x:Name="cmbEstado" Width="90">
                     <ComboBoxItem Content="Pendiente" IsSelected="True"/>
                     <ComboBoxItem Content="Entregado"/>
                 </ComboBox>
 
             </StackPanel>
         </Border>
-
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="dgPedidos" Grid.Column="0" AutoGenerateColumns="False" 
-          CanUserAddRows="False" Margin="0,0,10,0" SelectionChanged="dgPedidos_SelectionChanged"
-          RowHeaderWidth="0" GridLinesVisibility="None" Background="White">
+            <Grid Grid.Column="0" Margin="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Estado}" Value="Pendiente">
-                                <Setter Property="Foreground" Value="Red"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </DataTrigger>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Right">
+                    <TextBlock Text="Buscar por fecha:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <DatePicker x:Name="dpFiltroFecha" Width="120" Margin="0,0,10,0"/>
 
-                            <DataTrigger Binding="{Binding Estado}" Value="Entregado">
-                                <Setter Property="Foreground" Value="Green"/>
-                                <Setter Property="FontStyle" Value="Italic"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
+                    <Button Content="🔍 Buscar" Width="80" Click="btnBuscarFecha_Click" Style="{StaticResource BotonDoradoElegant}" Margin="0,0,5,0"/>
+                    <Button Content="📅 Ver los de Hoy" Width="110" Click="btnVerHoy_Click" Style="{StaticResource BotonDoradoElegant}"/>
+                </StackPanel>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Folio" Binding="{Binding Folio}" Width="45"/>
-                    <DataGridTextColumn Header="Cliente" Binding="{Binding Nombre}" Width="120"/>
-                    <DataGridTextColumn Header="Pedido" Binding="{Binding Comida}" Width="*"/>
-                    <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=C}" Width="80"/>
+                <DataGrid x:Name="dgPedidos" Grid.Row="1" AutoGenerateColumns="False" 
+              CanUserAddRows="False" SelectionChanged="dgPedidos_SelectionChanged"
+              RowHeaderWidth="0" GridLinesVisibility="None" Background="White">
 
-                    <DataGridTemplateColumn Header="Estado" Width="90">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Border CornerRadius="5" Padding="5,2" Background="#F4F4F4">
-                                    <TextBlock Text="{Binding Estado}" HorizontalAlignment="Center" FontWeight="SemiBold"/>
-                                </Border>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="Pendiente">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Estado}" Value="Entregado">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Folio" Binding="{Binding Folio}" Width="45"/>
+                        <DataGridTextColumn Header="Cliente" Binding="{Binding Nombre}" Width="120"/>
+                        <DataGridTextColumn Header="Pedido" Binding="{Binding Comida}" Width="*"/>
+                        <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=C}" Width="80"/>
+
+                        <DataGridTemplateColumn Header="Estado" Width="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="5" Padding="5,2" Background="#F4F4F4">
+                                        <TextBlock Text="{Binding Estado}" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
 
             <Border Grid.Column="1" Background="White" Padding="10">
                 <StackPanel>

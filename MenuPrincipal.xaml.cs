@@ -31,7 +31,6 @@ namespace Riso
                     VentanaInventario ventanaInventario = new VentanaInventario();
                     ventanaInventario.Show();
                     this.Hide();
-
                     break;
 
                 case "btnPedidos":
@@ -50,9 +49,14 @@ namespace Riso
                     VentanaBebidas ventanaBebidas = new VentanaBebidas();
                     ventanaBebidas.Show();
                     this.Hide();
+                    break;
 
-                    break; 
-
+                // --- NUEVO BOTÓN: CORTE DE CAJA ---
+                case "btnCorteCaja":
+                    CorteCaja ventanaCorte = new CorteCaja();
+                    ventanaCorte.Show();
+                    this.Hide();
+                    break;
             }
         }
     }

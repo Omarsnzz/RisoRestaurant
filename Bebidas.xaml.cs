@@ -23,8 +23,7 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    // SE AGREGÓ CANTIDAD AL SELECT
-                    string query = "SELECT Nombre, Costo, Cantidad FROM bebidas";
+                   string query = "SELECT Nombre, Costo, Cantidad FROM bebidas";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -58,7 +57,6 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    // SE AGREGÓ CANTIDAD AL INSERT
                     string query = "INSERT INTO bebidas (Nombre, Costo, Cantidad) VALUES (@nombre, @costo, @cantidad)";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
@@ -200,7 +198,6 @@ namespace Riso
                 txtNombre.Text = row["Nombre"].ToString();
                 txtCosto.Text = row["Costo"].ToString();
 
-                // SE LEE LA CANTIDAD AL HACER CLIC EN LA TABLA
                 txtCantidad.Text = row["Cantidad"].ToString();
             }
         }
@@ -209,7 +206,7 @@ namespace Riso
         {
             txtNombre.Clear();
             txtCosto.Clear();
-            txtCantidad.Clear(); // SE LIMPIA EL CAMPO CANTIDAD
+            txtCantidad.Clear(); 
             dgBebidas.SelectedItem = null;
         }
 

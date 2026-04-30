@@ -14,15 +14,13 @@ namespace Riso
         decimal totalAcumulado = 0;
         List<string> productosEnCarrito = new List<string>();
 
-        // NUEVA LISTA: Para llevar el control de qué vamos a descontar de la base de datos
         List<ItemDeduccion> itemsDeduccion = new List<ItemDeduccion>();
 
-        // NUEVA CLASE INTERNA: Para estructurar la información del inventario
         private class ItemDeduccion
         {
             public string Nombre { get; set; }
             public int Cantidad { get; set; }
-            public string TablaBD { get; set; } // Guardará si es "alimentos" o "bebidas"
+            public string TablaBD { get; set; } 
         }
 
         public Pedidos()
@@ -32,7 +30,6 @@ namespace Riso
             CargarMenus();
         }
 
-        // --- CARGA DE DATOS ---
         private void CargarMenus()
         {
             using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
@@ -54,26 +51,62 @@ namespace Riso
             }
         }
 
+        // --- CARGA DE DATOS POR FECHA ---
+
+        // Modificamos CargarDatos para que por defecto muestre SOLO los de HOY
         private void CargarDatos()
+        {
+            // Llama al nuevo método pasándole la fecha de hoy
+            CargarDatosPorFecha(DateTime.Today);
+        }
+
+        // NUEVO MÉTODO: Trae solo los pedidos del día que le pidas
+        private void CargarDatosPorFecha(DateTime fecha)
         {
             using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
             {
                 try
                 {
                     conexion.Open();
-                    string query = "SELECT * FROM pedidos_domicilio";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion);
+                    // Usamos DATE(Dia) para asegurarnos de que compare solo la fecha y no la hora
+                    string query = "SELECT * FROM pedidos_domicilio WHERE DATE(Dia) = @fecha";
+                    MySqlCommand cmd = new MySqlCommand(query, conexion);
+
+                    // Le pasamos la fecha formateada para que MySQL la entienda (Año-Mes-Día)
+                    cmd.Parameters.AddWithValue("@fecha", fecha.ToString("yyyy-MM-dd"));
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
+
                     dgPedidos.ItemsSource = dt.DefaultView;
                 }
-                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+                catch (Exception ex) { MessageBox.Show("Error al filtrar por fecha: " + ex.Message); }
             }
         }
 
-        // --- LÓGICA DEL CARRITO Y VALIDACIÓN DE INVENTARIO ---
+        // EVENTO: Botón para buscar una fecha específica
+        private void btnBuscarFecha_Click(object sender, RoutedEventArgs e)
+        {
+            if (dpFiltroFecha.SelectedDate.HasValue)
+            {
+                // Si eligió una fecha, cargamos los datos de ese día
+                CargarDatosPorFecha(dpFiltroFecha.SelectedDate.Value);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una fecha en el calendario para buscar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
 
-        // NUEVO MÉTODO: Consulta a la BD en tiempo real para ver cuánto nos queda
+        // EVENTO: Botón para regresar a ver solo los pedidos de hoy
+        private void btnVerHoy_Click(object sender, RoutedEventArgs e)
+        {
+            dpFiltroFecha.SelectedDate = DateTime.Today; // Actualiza el calendario visual
+            CargarDatosPorFecha(DateTime.Today); // Carga los datos
+        }
+
+
         private int ObtenerStockDisponible(string nombreProducto, string tabla)
         {
             int stock = 0;
@@ -97,6 +130,30 @@ namespace Riso
             return stock;
         }
 
+        private void cmbPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbPlatillos.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)cmbPlatillos.SelectedItem;
+                string nombre = row["Nombre"].ToString() ?? "";
+
+                int stock = ObtenerStockDisponible(nombre, "alimentos");
+                lblDisponiblePlatillo.Text = stock.ToString();
+            }
+        }
+
+        private void cmbBebidas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbBebidas.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)cmbBebidas.SelectedItem;
+                string nombre = row["Nombre"].ToString() ?? "";
+
+                int stock = ObtenerStockDisponible(nombre, "bebidas");
+                lblDisponibleBebida.Text = stock.ToString();
+            }
+        }
+
         private void btnAgregarPlatillo_Click(object sender, RoutedEventArgs e)
         {
             if (cmbPlatillos.SelectedItem != null)
@@ -112,7 +169,7 @@ namespace Riso
                 decimal precio = Convert.ToDecimal(row["Precio"]);
 
                 ProcesarIngresoAlCarrito(nombre, precio, cantidadPedida, "alimentos");
-                txtCantPlatillo.Text = "1"; // Resetear cantidad
+                txtCantPlatillo.Text = "1"; 
             }
         }
 
@@ -131,19 +188,17 @@ namespace Riso
                 decimal precio = Convert.ToDecimal(row["Costo"]);
 
                 ProcesarIngresoAlCarrito(nombre, precio, cantidadPedida, "bebidas");
-                txtCantBebida.Text = "1"; // Resetear cantidad
+                txtCantBebida.Text = "1"; 
             }
         }
 
         private void ProcesarIngresoAlCarrito(string nombre, decimal precioUnitario, int cantidadPedida, string tablaBD)
         {
-            // 1. Verificar inventario real
             int stockTotal = ObtenerStockDisponible(nombre, tablaBD);
 
-            // 2. Verificar cuánto de ese producto ya metimos al carrito en este mismo pedido
+
             int cantidadYaEnCarrito = itemsDeduccion.Where(x => x.Nombre == nombre).Sum(x => x.Cantidad);
 
-            // 3. Validar si nos alcanza
             if (cantidadPedida + cantidadYaEnCarrito > stockTotal)
             {
                 int disponibleParaAgregar = stockTotal - cantidadYaEnCarrito;
@@ -151,7 +206,6 @@ namespace Riso
                 return;
             }
 
-            // 4. Si todo está bien, calculamos subtotal y agregamos
             decimal subtotal = precioUnitario * cantidadPedida;
             string descripcionItem = $"{cantidadPedida} x {nombre}";
 
@@ -161,11 +215,9 @@ namespace Riso
             totalAcumulado += subtotal;
             lblTotal.Text = totalAcumulado.ToString("C");
 
-            // 5. Lo guardamos en nuestra lista de control para descontarlo al final
             itemsDeduccion.Add(new ItemDeduccion { Nombre = nombre, Cantidad = cantidadPedida, TablaBD = tablaBD });
         }
 
-        // --- GUARDADO EN BASE DE DATOS ---
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             if (productosEnCarrito.Count == 0 || string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -182,7 +234,6 @@ namespace Riso
                 {
                     conexion.Open();
 
-                    // 1. Guardar el Pedido
                     string queryPedido = "INSERT INTO pedidos_domicilio (Nombre, Telefono, Lugar, Comida, Dia, Hora, Total, Estado) " +
                                    "VALUES (@nom, @tel, @lug, @com, @dia, @hor, @tot, @est)";
                     MySqlCommand cmd = new MySqlCommand(queryPedido, conexion);
@@ -197,7 +248,6 @@ namespace Riso
 
                     cmd.ExecuteNonQuery();
 
-                    // 2. DESCONTAR DEL INVENTARIO LOS PRODUCTOS COMPRADOS
                     foreach (var item in itemsDeduccion)
                     {
                         string queryDeduccion = $"UPDATE {item.TablaBD} SET Cantidad = Cantidad - @cant WHERE Nombre = @nom";
@@ -215,7 +265,6 @@ namespace Riso
             }
         }
 
-        // --- OTROS BOTONES ---
         private void dgPedidos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgPedidos.SelectedItem != null)
@@ -279,7 +328,7 @@ namespace Riso
         private void LimpiarCarrito()
         {
             productosEnCarrito.Clear();
-            itemsDeduccion.Clear(); // LIMPIAMOS TAMBIÉN LA LISTA DE INVENTARIO
+            itemsDeduccion.Clear(); 
             lbCarrito.Items.Clear();
             totalAcumulado = 0;
             lblTotal.Text = "$0.00";
@@ -344,7 +393,6 @@ namespace Riso
 
                     cmd.ExecuteNonQuery();
 
-                    // Nota: Al editar no estamos tocando inventarios para no complicar la lógica si borras o agregas cosas a un pedido viejo.
 
                     MessageBox.Show("¡Pedido actualizado correctamente!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
