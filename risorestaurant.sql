@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-04-2026 a las 20:52:38
+-- Tiempo de generación: 03-05-2026 a las 20:58:24
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,7 +38,7 @@ CREATE TABLE `alimentos` (
 --
 
 INSERT INTO `alimentos` (`Nombre`, `Precio`, `Cantidad`) VALUES
-('Chilaquiles Rojos', 110, 4),
+('Chilaquiles Rojos', 110, 3),
 ('Chilaquiles Verdes', 110, 10),
 ('Chilaquiles Verdes - Pollo', 120, 9),
 ('Chilaquiles Rojos - Pollo', 120, 9);
@@ -62,8 +62,8 @@ CREATE TABLE `bebidas` (
 
 INSERT INTO `bebidas` (`idBebidas`, `Nombre`, `Costo`, `Cantidad`) VALUES
 (5, 'Coca-Cola', 60, 43),
-(7, 'pepsi', 55, 4),
-(8, 'coca cola 600 ml', 20, 5);
+(7, 'pepsi', 55, 3),
+(8, 'coca cola 600 ml', 20, 4);
 
 -- --------------------------------------------------------
 
@@ -79,19 +79,9 @@ CREATE TABLE `cuenta` (
   `PorcentajeDescuento` decimal(5,2) DEFAULT NULL,
   `Total` decimal(10,2) DEFAULT NULL,
   `FechaHora` datetime DEFAULT current_timestamp(),
-  `propina` decimal(10,2) NOT NULL
+  `propina` decimal(10,2) NOT NULL,
+  `Articulos` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cuenta`
---
-
-INSERT INTO `cuenta` (`idCuenta`, `Mesa`, `Mesero`, `Subtotal`, `PorcentajeDescuento`, `Total`, `FechaHora`, `propina`) VALUES
-(1, 'General', 'General', 220.00, 0.00, 220.00, '2026-04-14 15:10:54', 0.00),
-(2, 'General', 'General', 110.00, 0.00, 110.00, '2026-04-16 11:55:35', 0.00),
-(3, '2', 'Juan perez', 230.00, 0.00, 230.00, '2026-04-17 10:13:31', 0.00),
-(4, '4', 'General', 170.00, 0.00, 170.00, '2026-04-20 16:58:30', 0.00),
-(5, 'General', 'General', 165.00, 0.00, 165.00, '2026-04-21 11:32:54', 0.00);
 
 -- --------------------------------------------------------
 
@@ -168,7 +158,7 @@ ALTER TABLE `bebidas`
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `idCuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idCuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_domicilio`
