@@ -1,0 +1,172 @@
+﻿<Window x:Class="Riso.Pedidos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RISO - Pedidos a Domicilio Pro" Height="750" Width="1100" 
+        WindowStartupLocation="CenterScreen" Background="#FEFDF1">
+
+    <Window.Resources>
+        <Style x:Key="BotonDoradoElegant" TargetType="Button">
+            <Setter Property="Background" Value="#D1A757"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="NUEVO PEDIDO RISO" Foreground="#8B6B3F" FontSize="30" FontWeight="ExtraBold" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+        <Border Grid.Row="1" Background="White" CornerRadius="10" Padding="15" Margin="0,0,0,15" BorderBrush="#D1A757" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Cliente:" FontWeight="Bold" Foreground="#8B6B3F"/>
+                    <TextBox x:Name="txtNombre" Width="150" Padding="3"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Teléfono:" FontWeight="Bold" Foreground="#8B6B3F"/>
+                    <TextBox x:Name="txtTelefono" Width="100" Padding="3"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Dirección:" FontWeight="Bold" Foreground="#8B6B3F"/>
+                    <TextBox x:Name="txtLugar" Width="220" Padding="3"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Fecha:" FontWeight="Bold" Foreground="#8B6B3F"/>
+                    <DatePicker x:Name="dpDia" Width="110"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Hora:" FontWeight="Bold" Foreground="#8B6B3F"/>
+                    <TextBox x:Name="txtHora" Width="60" Padding="3"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Background="#F9F4E8" CornerRadius="10" Padding="15" Margin="0,0,0,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <TextBlock Text="Platillo:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
+                <ComboBox x:Name="cmbPlatillos" Width="120" DisplayMemberPath="Nombre" SelectionChanged="cmbPlatillos_SelectionChanged"/>
+
+                <TextBlock Text="Disp:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0" Foreground="#555"/>
+                <TextBlock x:Name="lblDisponiblePlatillo" Text="-" VerticalAlignment="Center" Width="25" Foreground="DarkRed" FontWeight="Bold"/>
+
+                <TextBlock Text="Cant:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0"/>
+                <TextBox x:Name="txtCantPlatillo" Width="25" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
+                <Button Content="+" Width="30" Margin="5,0,15,0" Click="btnAgregarPlatillo_Click" Style="{StaticResource BotonDoradoElegant}"/>
+
+                <TextBlock Text="Bebida:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
+                <ComboBox x:Name="cmbBebidas" Width="120" DisplayMemberPath="Nombre" SelectionChanged="cmbBebidas_SelectionChanged"/>
+
+                <TextBlock Text="Disp:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0" Foreground="#555"/>
+                <TextBlock x:Name="lblDisponibleBebida" Text="-" VerticalAlignment="Center" Width="25" Foreground="DarkRed" FontWeight="Bold"/>
+
+                <TextBlock Text="Cant:" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0,2,0"/>
+                <TextBox x:Name="txtCantBebida" Width="25" VerticalAlignment="Center" Text="1" HorizontalContentAlignment="Center"/>
+                <Button Content="+" Width="30" Margin="5,0,15,0" Click="btnAgregarBebida_Click" Style="{StaticResource BotonDoradoElegant}"/>
+
+                <TextBlock Text="Estado:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
+                <ComboBox x:Name="cmbEstado" Width="90">
+                    <ComboBoxItem Content="Pendiente" IsSelected="True"/>
+                    <ComboBoxItem Content="Entregado"/>
+                </ComboBox>
+
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="0,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Right">
+                    <TextBlock Text="Buscar por fecha:" VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <DatePicker x:Name="dpFiltroFecha" Width="120" Margin="0,0,10,0"/>
+
+                    <Button Content="🔍 Buscar" Width="80" Click="btnBuscarFecha_Click" Style="{StaticResource BotonDoradoElegant}" Margin="0,0,5,0"/>
+                    <Button Content="📅 Ver los de Hoy" Width="110" Click="btnVerHoy_Click" Style="{StaticResource BotonDoradoElegant}"/>
+                </StackPanel>
+
+                <DataGrid x:Name="dgPedidos" Grid.Row="1" AutoGenerateColumns="False" 
+              CanUserAddRows="False" SelectionChanged="dgPedidos_SelectionChanged"
+              RowHeaderWidth="0" GridLinesVisibility="None" Background="White">
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Estado}" Value="Pendiente">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Estado}" Value="Entregado">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Folio" Binding="{Binding Folio}" Width="45"/>
+                        <DataGridTextColumn Header="Cliente" Binding="{Binding Nombre}" Width="120"/>
+                        <DataGridTextColumn Header="Pedido" Binding="{Binding Comida}" Width="*"/>
+                        <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=C}" Width="80"/>
+
+                        <DataGridTemplateColumn Header="Estado" Width="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="5" Padding="5,2" Background="#F4F4F4">
+                                        <TextBlock Text="{Binding Estado}" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Border Grid.Column="1" Background="White" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="DETALLE DEL PEDIDO" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <ListBox x:Name="lbCarrito" Height="150" Margin="0,0,0,10"/>
+                    <TextBlock Text="TOTAL A COBRAR:" FontWeight="Bold" Foreground="#8B6B3F" FontSize="16"/>
+                    <TextBlock x:Name="lblTotal" Text="$0.00" FontSize="24" FontWeight="Bold" Foreground="#D1A757" HorizontalAlignment="Right"/>
+                    <Button Content="Limpiar Carrito" Click="btnLimpiarCarrito_Click" Background="#E74C3C" Foreground="White" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <UniformGrid Grid.Row="4" Columns="4" Height="50" Margin="0,15,0,0">
+            <Button Content="💾 GUARDAR PEDIDO" Click="btnAgregar_Click" Style="{StaticResource BotonDoradoElegant}" Margin="5"/>
+            <Button Content="✏️ ACTUALIZAR" Click="btnEditar_Click" Style="{StaticResource BotonDoradoElegant}" Margin="5"/>
+            <Button Content="🗑️ ELIMINAR" Click="btnEliminar_Click" Style="{StaticResource BotonDoradoElegant}" Margin="5" Background="#8B6B3F"/>
+            <Button Content="🏠 VOLVER" Click="btnVolver_Click" Style="{StaticResource BotonDoradoElegant}" Margin="5"/>
+        </UniformGrid>
+        <TextBox x:Name="txtFolio" Visibility="Collapsed"/>
+    </Grid>
+</Window>

@@ -5,7 +5,13 @@
     <Compile Update="Bebidas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CorteCaja.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Inventarioxaml.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pedidos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

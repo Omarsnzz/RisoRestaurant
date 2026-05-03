@@ -4,93 +4,117 @@
         Title="RisoRestaurante - Menú Principal" Height="900" Width="1200"
         WindowStartupLocation="CenterScreen" Background="#FDF8E1">
 
-	<Window.Resources>
-		<Style x:Key="BotonRisoStyle" TargetType="Button">
-			<Setter Property="Background" Value="White"/>
-			<Setter Property="BorderBrush" Value="#C5A059"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="Margin" Value="10,0"/>
-			<Setter Property="Width" Value="330"/>
-			<Setter Property="Height" Value="160"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Border x:Name="border" Background="{TemplateBinding Background}"
+    <Window.Resources>
+        <Style x:Key="BotonRisoStyle" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#C5A059"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="Height" Value="160"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="20">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="Background" Value="#FFFBF0"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</Window.Resources>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFFBF0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
-	<Grid>
-		<Image Source="/res/img/SuperiorIZQ.png" Width="130" Height="130"
+    <Grid>
+        <Image Source="/res/img/SuperiorIZQ.png" Width="130" Height="130"
                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-		<Image Source="/res/img/SuperiorDER.png" Width="130" Height="130"
+        <Image Source="/res/img/SuperiorDER.png" Width="130" Height="130"
                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
-		<Image Source="/res/img/InferiorIZQ.png" Width="130" Height="130"
+        <Image Source="/res/img/InferiorIZQ.png" Width="130" Height="130"
                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5"/>
-		<Image Source="/res/img/InferiorDER.png" Width="130" Height="130"
+        <Image Source="/res/img/InferiorDER.png" Width="130" Height="130"
                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"/>
 
-		<StackPanel VerticalAlignment="Top" Margin="0,20,0,0">
+        <StackPanel VerticalAlignment="Top" Margin="0,20,0,0">
 
-			<Image Source="/res/img/LogoALL.png"
+            <Image Source="/res/img/LogoALL.png"
                    Height="460"
                    Margin="0,0,0,10"
                    Stretch="Uniform"
                    HorizontalAlignment="Center"/>
 
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
-				<Button x:Name="btnPlatillos" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
-					<StackPanel>
-						<Image Source="/res/img/PlatilloDia.png" Height="75" Margin="5"/>
-						<TextBlock Text="PLATILLOS DEL DÍA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
-						<TextBlock Text="AGREGAR PLATILLOS DEL DÍA" HorizontalAlignment="Center" FontSize="10" Foreground="#634D2E"/>
-					</StackPanel>
-				</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Button x:Name="btnPlatillos" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
+                    <StackPanel>
+                        <Image Source="/res/img/PlatilloDia.png" Height="75" Margin="5"/>
+                        <TextBlock Text="PLATILLOS DEL DÍA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
+                        <TextBlock Text="AGREGAR PLATILLOS DEL DÍA" HorizontalAlignment="Center" FontSize="10" Foreground="#634D2E"/>
+                    </StackPanel>
+                </Button>
 
-				<Button x:Name="btnInventario" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
-					<StackPanel>
-						<Image Source="/res/img/Inventario.png" Height="75" Margin="5"/>
-						<TextBlock Text="INVENTARIO DE MERCANCÍA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E" TextAlignment="Center"/>
-					</StackPanel>
-				</Button>
+                <Button x:Name="btnInventario" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
+                    <StackPanel>
+                        <Image Source="/res/img/Inventario.png" Height="75" Margin="5"/>
+                        <TextBlock Text="INVENTARIO DE MERCANCÍA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E" TextAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
-				<Button x:Name="btnPedidos" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
-					<StackPanel>
-						<Image Source="/res/img/Domicilios.png" Height="75" Margin="5"/>
-						<TextBlock Text="PEDIDOS DOMICILIO" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
-						<TextBlock Text="PARA LLEVAR" HorizontalAlignment="Center" FontSize="10" Foreground="#634D2E"/>
-					</StackPanel>
-				</Button>
-			</StackPanel>
+                <Button x:Name="btnPedidos" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
+                    <StackPanel>
+                        <Image Source="/res/img/Domicilios.png" Height="75" Margin="5"/>
+                        <TextBlock Text="PEDIDOS DOMICILIO" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
+                        <TextBlock Text="PARA LLEVAR" HorizontalAlignment="Center" FontSize="10" Foreground="#634D2E"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<Button x:Name="btnCuenta" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
-					<StackPanel>
-						<Image Source="/res/img/Cuenta.png" Height="75" Margin="5"/>
-						<TextBlock Text="GENERAR CUENTA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
-					</StackPanel>
-				</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCuenta" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
+                    <StackPanel>
+                        <Image Source="/res/img/Cuenta.png" Height="75" Margin="5"/>
+                        <TextBlock Text="GENERAR CUENTA" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
+                    </StackPanel>
+                </Button>
 
-				<Button x:Name="btnBebidas" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
-					<StackPanel>
-						<Image Source="/res/img/Bebidas.png" Height="75" Margin="5"/>
-						<TextBlock Text="BEBIDAS" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
-					</StackPanel>
-				</Button>
-			</StackPanel>
+                <Button x:Name="btnBebidas" Click="Menu_Click" Style="{StaticResource BotonRisoStyle}">
+                    <StackPanel>
+                        <Image Source="/res/img/Bebidas.png" Height="75" Margin="5"/>
+                        <TextBlock Text="BEBIDAS" HorizontalAlignment="Center" FontSize="19" FontWeight="Bold" Foreground="#634D2E"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-		</StackPanel>
-	</Grid>
+        </StackPanel>
+
+        <Button x:Name="btnCorteCaja" Click="Menu_Click" 
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,290,10,0" Cursor="Hand" 
+                Background="Transparent" BorderThickness="0" Width="235" Height="189">
+
+            <StackPanel>
+                <Image Source="/res/img/Corte.png" Height="90" Margin="5" Width="160"/>
+                <TextBlock Text="CORTE DE CAJA" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#634D2E"/>
+            </StackPanel>
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
 </Window>
