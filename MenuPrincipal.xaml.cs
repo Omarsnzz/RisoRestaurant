@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using MySql.Data.MySqlClient;
 
 namespace Riso
 {
     public partial class MainWindow : Window
     {
-        // Cadena de conexión a tu base de datos
-        string cadenaConexion = "server=localhost;port=3306;user=root;password=admin123;database=RisoRestaurant;";
-
         public MainWindow()
         {
             InitializeComponent();

@@ -13,7 +13,7 @@ namespace Riso
         public VentanaInventario()
         {
             InitializeComponent();
-            CargarDatos(); 
+            CargarDatos();
         }
 
         private void CargarDatos()
@@ -40,14 +40,12 @@ namespace Riso
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-           
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtUnidad.Text))
             {
                 MessageBox.Show("Por favor, llena todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            
             if (!decimal.TryParse(txtCantidad.Text, out decimal cantidad))
             {
                 MessageBox.Show("La cantidad debe ser un número (puedes usar decimales).", "Error de Formato", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -187,7 +185,6 @@ namespace Riso
 
         private void dgInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             if (dgInventario.SelectedItem != null)
             {
                 DataRowView row = (DataRowView)dgInventario.SelectedItem;
@@ -207,12 +204,12 @@ namespace Riso
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            
             foreach (Window window in Application.Current.Windows)
             {
-                if (window.GetType() == typeof(MainWindow))
+                if (window is MainWindow)
                 {
                     window.Show();
+                    break;
                 }
             }
             this.Close();

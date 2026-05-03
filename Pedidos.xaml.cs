@@ -20,7 +20,7 @@ namespace Riso
         {
             public string Nombre { get; set; }
             public int Cantidad { get; set; }
-            public string TablaBD { get; set; } 
+            public string TablaBD { get; set; }
         }
 
         public Pedidos()
@@ -51,16 +51,11 @@ namespace Riso
             }
         }
 
-        // --- CARGA DE DATOS POR FECHA ---
-
-        // Modificamos CargarDatos para que por defecto muestre SOLO los de HOY
         private void CargarDatos()
         {
-            // Llama al nuevo método pasándole la fecha de hoy
             CargarDatosPorFecha(DateTime.Today);
         }
 
-        // NUEVO MÉTODO: Trae solo los pedidos del día que le pidas
         private void CargarDatosPorFecha(DateTime fecha)
         {
             using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
@@ -68,11 +63,9 @@ namespace Riso
                 try
                 {
                     conexion.Open();
-                    // Usamos DATE(Dia) para asegurarnos de que compare solo la fecha y no la hora
                     string query = "SELECT * FROM pedidos_domicilio WHERE DATE(Dia) = @fecha";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
 
-                    // Le pasamos la fecha formateada para que MySQL la entienda (Año-Mes-Día)
                     cmd.Parameters.AddWithValue("@fecha", fecha.ToString("yyyy-MM-dd"));
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -85,12 +78,10 @@ namespace Riso
             }
         }
 
-        // EVENTO: Botón para buscar una fecha específica
         private void btnBuscarFecha_Click(object sender, RoutedEventArgs e)
         {
             if (dpFiltroFecha.SelectedDate.HasValue)
             {
-                // Si eligió una fecha, cargamos los datos de ese día
                 CargarDatosPorFecha(dpFiltroFecha.SelectedDate.Value);
             }
             else
@@ -99,13 +90,11 @@ namespace Riso
             }
         }
 
-        // EVENTO: Botón para regresar a ver solo los pedidos de hoy
         private void btnVerHoy_Click(object sender, RoutedEventArgs e)
         {
-            dpFiltroFecha.SelectedDate = DateTime.Today; // Actualiza el calendario visual
-            CargarDatosPorFecha(DateTime.Today); // Carga los datos
+            dpFiltroFecha.SelectedDate = DateTime.Today;
+            CargarDatosPorFecha(DateTime.Today);
         }
-
 
         private int ObtenerStockDisponible(string nombreProducto, string tabla)
         {
@@ -169,7 +158,7 @@ namespace Riso
                 decimal precio = Convert.ToDecimal(row["Precio"]);
 
                 ProcesarIngresoAlCarrito(nombre, precio, cantidadPedida, "alimentos");
-                txtCantPlatillo.Text = "1"; 
+                txtCantPlatillo.Text = "1";
             }
         }
 
@@ -188,14 +177,13 @@ namespace Riso
                 decimal precio = Convert.ToDecimal(row["Costo"]);
 
                 ProcesarIngresoAlCarrito(nombre, precio, cantidadPedida, "bebidas");
-                txtCantBebida.Text = "1"; 
+                txtCantBebida.Text = "1";
             }
         }
 
         private void ProcesarIngresoAlCarrito(string nombre, decimal precioUnitario, int cantidadPedida, string tablaBD)
         {
             int stockTotal = ObtenerStockDisponible(nombre, tablaBD);
-
 
             int cantidadYaEnCarrito = itemsDeduccion.Where(x => x.Nombre == nombre).Sum(x => x.Cantidad);
 
@@ -235,7 +223,7 @@ namespace Riso
                     conexion.Open();
 
                     string queryPedido = "INSERT INTO pedidos_domicilio (Nombre, Telefono, Lugar, Comida, Dia, Hora, Total, Estado) " +
-                                   "VALUES (@nom, @tel, @lug, @com, @dia, @hor, @tot, @est)";
+                                       "VALUES (@nom, @tel, @lug, @com, @dia, @hor, @tot, @est)";
                     MySqlCommand cmd = new MySqlCommand(queryPedido, conexion);
                     cmd.Parameters.AddWithValue("@nom", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@tel", txtTelefono.Text);
@@ -328,7 +316,7 @@ namespace Riso
         private void LimpiarCarrito()
         {
             productosEnCarrito.Clear();
-            itemsDeduccion.Clear(); 
+            itemsDeduccion.Clear();
             lbCarrito.Items.Clear();
             totalAcumulado = 0;
             lblTotal.Text = "$0.00";
@@ -350,8 +338,15 @@ namespace Riso
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow principal = new MainWindow();
-            principal.Show();
+            // AQUÍ ESTÁ EL CAMBIO: Busca el menú principal que ya está abierto en lugar de crear uno nuevo
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is MainWindow)
+                {
+                    window.Show();
+                    break;
+                }
+            }
             this.Close();
         }
 
@@ -392,7 +387,6 @@ namespace Riso
                     cmd.Parameters.AddWithValue("@est", estado);
 
                     cmd.ExecuteNonQuery();
-
 
                     MessageBox.Show("¡Pedido actualizado correctamente!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
