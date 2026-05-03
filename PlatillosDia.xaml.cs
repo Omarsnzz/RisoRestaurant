@@ -37,6 +37,7 @@ namespace Riso
                 }
             }
         }
+
         private void btnAgregarPlatillo_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text))
@@ -119,6 +120,7 @@ namespace Riso
                 }
             }
         }
+
         private void btnEliminarPlatillo_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -210,9 +212,10 @@ namespace Riso
         {
             foreach (Window window in Application.Current.Windows)
             {
-                if (window.GetType() == typeof(MainWindow))
+                if (window is MainWindow)
                 {
                     window.Show();
+                    break;
                 }
             }
             this.Close();
