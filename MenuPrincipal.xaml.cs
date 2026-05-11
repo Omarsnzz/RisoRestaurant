@@ -47,11 +47,10 @@ namespace Riso
                     this.Hide();
                     break;
 
-                // --- NUEVO BOTÓN: CORTE DE CAJA ---
                 case "btnCorteCaja":
                     CorteCaja ventanaCorte = new CorteCaja();
                     ventanaCorte.Show();
-                    this.Hide();
+                    this.Close(); 
                     break;
             }
         }

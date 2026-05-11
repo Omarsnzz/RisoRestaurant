@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2026 a las 20:58:24
+-- Tiempo de generación: 11-05-2026 a las 21:43:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,8 +38,8 @@ CREATE TABLE `alimentos` (
 --
 
 INSERT INTO `alimentos` (`Nombre`, `Precio`, `Cantidad`) VALUES
-('Chilaquiles Rojos', 110, 3),
-('Chilaquiles Verdes', 110, 10),
+('Chilaquiles Rojos', 110, 2),
+('Chilaquiles Verdes', 110, 9),
 ('Chilaquiles Verdes - Pollo', 120, 9),
 ('Chilaquiles Rojos - Pollo', 120, 9);
 
@@ -61,7 +61,7 @@ CREATE TABLE `bebidas` (
 --
 
 INSERT INTO `bebidas` (`idBebidas`, `Nombre`, `Costo`, `Cantidad`) VALUES
-(5, 'Coca-Cola', 60, 43),
+(5, 'Coca-Cola', 60, 42),
 (7, 'pepsi', 55, 3),
 (8, 'coca cola 600 ml', 20, 4);
 
@@ -82,6 +82,13 @@ CREATE TABLE `cuenta` (
   `propina` decimal(10,2) NOT NULL,
   `Articulos` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cuenta`
+--
+
+INSERT INTO `cuenta` (`idCuenta`, `Mesa`, `Mesero`, `Subtotal`, `PorcentajeDescuento`, `Total`, `FechaHora`, `propina`, `Articulos`) VALUES
+(7, '2', 'juan', 280.00, 0.00, 280.00, '2026-05-04 10:50:07', 0.00, 'alimentos|Chilaquiles Rojos|1|110|110~bebidas|Coca-Cola|1|60|60~alimentos|Chilaquiles Verdes|1|110|110');
 
 -- --------------------------------------------------------
 
@@ -158,7 +165,7 @@ ALTER TABLE `bebidas`
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `idCuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idCuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_domicilio`
